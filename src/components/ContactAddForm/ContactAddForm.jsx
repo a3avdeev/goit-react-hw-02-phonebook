@@ -19,13 +19,16 @@ export default class ContactAddForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        const { name, number } = this.state;
         console.log(this.state);
-        this.reset();
+        this.props.onSubmit({name, number});
+            this.setState({
+                name: '',
+                number: '',
+            })
+        
     }
 
-    reset = () => {
-        this.state({ name: '', number: '' });
-    }
 
     render() {
     return (
