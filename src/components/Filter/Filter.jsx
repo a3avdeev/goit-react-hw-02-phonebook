@@ -1,11 +1,16 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import PropTypes from "prop-types";
 
-export const Filter = ({ filter, onChange }) => {
+export const Filter = ({ value, onChange }) => {
     return (
         <div>
-            <label htmlFor={nanoid()}>
-                <input id={nanoid()} filter={filter} type="text" onChange={onChange}/></label>
+            <label>Find contacts by name</label>
+            <input type="text" name="filter" value={value}  onChange={onChange} placeholder="input something"/>
         </div>
     )
+}
+
+Filter.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string,
 }
