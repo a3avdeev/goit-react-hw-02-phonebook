@@ -35,9 +35,10 @@ export default class ContactAddForm extends Component {
     return (
         <>
             <ContactForm onSubmit={this.handleSubmit}>
-                <label>
+                <label htmlFor='{nameId}'>
                     Name
-                    <input
+                </label>
+                <input
                     id={this.nameId}
                     type="text"
                     name="name"
@@ -48,21 +49,20 @@ export default class ContactAddForm extends Component {
                     placeholder="Enter New Name"
                     required
                 />
-                </label>
-                <label>
+                <label htmlFor='{numberId}'>
                     Number
-                    <input
-                        id={this.numberId}
-                        type="tel"
-                        name="number"
-                        value={this.state.number}
-                        onChange={this.handleChange}
-                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                        placeholder="Enter New Number"
-                        required
-                        />
                 </label>
+                <input
+                    id={this.numberId}
+                    type="tel"
+                    name="number"
+                    value={this.state.number}
+                    onChange={this.handleChange}
+                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                    placeholder="Enter New Number"
+                    required
+                />
                 <button type="submit">Add contact</button>
             </ContactForm>
         </>
