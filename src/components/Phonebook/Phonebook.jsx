@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import ContactAddForm from "../ContactAddForm/ContactAddForm"
 import { ContactItemList } from "../ContactItemList/ContactItemList"
 import { Filter } from "../Filter/Filter"
+import { PhonebookStyled } from "./Phonebook.Styled"
 
 export default class Phonebook extends Component {
     state = {
@@ -46,9 +47,12 @@ export default class Phonebook extends Component {
             return contacts;
         }
 
-        contacts.filter(({ name }) => {
-            return name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+        const normalFilter = filter.toLocaleLowerCase();
+        const filteredContacts = contacts.filter(({ name }) => {
+            const normalName = name.toLocaleLowerCase().includes(normalFilter);
+            return normalName;
         })
+        return filteredContacts;
     }
 
     inContacts({name, number}) {
@@ -57,14 +61,16 @@ export default class Phonebook extends Component {
 
     render() {
         const { filter } = this.state;
-        return <div>
-            <h2>Phonebook</h2>
-            <ContactAddForm onSubmit={this.addContact}/>
+        const {addContact, removeContact, handleChange } = this;
+        const contacts = this.getFilteredContacts();
+        return <PhonebookStyled>
+            <h1>Phonebook</h1>
+            <ContactAddForm onSubmit={addContact}/>
 
             <h2>Contacts</h2>
-            <Filter value={filter} onChange={this.handleChange}/>
-            <ContactItemList contacts={this.getFilteredContacts()} onClick={this.removeContact}/>
-        </div>
+            <Filter value={filter} onChange={handleChange}/>
+            <ContactItemList contacts={contacts} onClick={removeContact}/>
+        </PhonebookStyled>
     }
 
 

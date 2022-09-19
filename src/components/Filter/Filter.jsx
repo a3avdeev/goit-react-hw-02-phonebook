@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-export const Filter = ({ value, onChange }) => {
+export const Filter = ({ filter, onChange }) => {
     return (
         <div>
             <label>Find contacts by name</label>
-            <input type="text" name="filter" value={value}  onChange={onChange} placeholder="input something"/>
+            <input type="text" name="filter" value={filter}  onChange={onChange} placeholder="input something"/>
         </div>
     )
 }
